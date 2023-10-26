@@ -114,7 +114,7 @@ class Fyers:
         # calculate timestamp to 15 days in future
         # refresh token works for 15 days if access_token expires
         if not a_t and not r_t:
-            expiry_timestamp = (datetime.now()+timedelta(days=15)).timestamp()
+            expiry_timestamp = (datetime.now()+timedelta(days=14)).timestamp()
 
             # open the file and write lines
             with open(self.file_name, "w") as f:
@@ -135,8 +135,6 @@ class Fyers:
 
         # create app instance
         self.fyers = fyersModel.FyersModel(client_id = self.client_id, is_async=False, token=self.access_token, log_path="")
-
-        return self.fyers
 
     
     # test fire a request to check if access token is working
@@ -171,3 +169,8 @@ class Fyers:
 
             # return the dataframe
             return df
+    
+
+    # grab the native instance of FyersModel
+    def get_native_instance(self):
+        return self.fyers

@@ -31,19 +31,10 @@ pin = "4783"
 # and then copy the auth_code from there and paste it in the terminal
 fyers = Fyers(client_id, secret_key, pin=pin)    # creates a file tokens.txt where tokens are stored
 
-# provide a config for history data retrieval
-config = {
-    "resolution":"15",
-    "date_format":"1",
-    "range_from":"2023-10-01",
-    "range_to":"2023-10-28",
-    "cont_flag":"1"
-}
+# grab the native instance and use native api
+native_fyers = fyers.get_native_instance()
 
-fyers.set_config(config)
-
-# grab NSE data for banknifty
-fyers.history("NSE:BANKNIFTY-INDEX")   # returns a dataframe
+# we can use native api from (native_fyers) which is an instance of FyersModel
 ```
 
 ### NOTE
