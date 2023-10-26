@@ -13,10 +13,13 @@ keywords = ['fyers', 'fyers-api', 'trading', 'fyers_apiv3']
 license = {text="MIT"}
 
 classifiers = [
-    "Intended Audience :: Traders",
+    "Intended Audience :: Financial and Insurance Industry",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3.10+"
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Utilities"
+
 ]
 
 dependencies = [
