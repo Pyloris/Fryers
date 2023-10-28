@@ -157,10 +157,18 @@ class Fyers:
 
 
     # grab historical data for a symbol
+    # returns a dataframe
     def history(self, symbol):
+        def get_data():
+            return self.fyers.history({"symbol":symbol, **self.config})
 
-        data = self.fyers.history({"symbol":symbol, **self.config})
-
+        # simple 1 retry mechanism to tackle the unbound error 
+        try:
+            data = get_data()
+        except Exception:
+            time.sleep(1)
+            data = get_data()
+            
         # convert the data into a suitable dataframe
         if data['s'] == 'ok':
             candles = data['candles']
