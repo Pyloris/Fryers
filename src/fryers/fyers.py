@@ -2,6 +2,7 @@ from fyers_apiv3 import fyersModel
 from datetime import datetime, timedelta
 from Crypto.Hash import SHA256
 from os import path
+import os
 import requests
 from termcolor import cprint
 import pandas as pd
@@ -43,15 +44,13 @@ class Fyers:
                     sha256 = SHA256.new()
                     sha256.update(bytes((self.client_id + self.secret_key).encode('utf-8')))
                     appid_hash = sha256.hexdigest()
-
-                    print(appid_hash)
                     
                     # grab new access token via refresh_token
                     resp = requests.post('https://api-t1.fyers.in/api/v3/validate-refresh-token', headers={'Content-Type':'application/json'}, data=json.dumps({'grant_type':'refresh_token', 'appIdHash':str(appid_hash), 'refresh_token':self.refresh_token, 'pin':self.pin}))
 
                     # if no erros
                     resp = resp.json()
-                    print(resp)
+
                     if resp['s'] == 'ok':
                         self.access_token = resp['access_token']
                         self.save_tokens(self.access_token, str(expiry_time.timestamp()) + ":" + self.refresh_token)
@@ -133,10 +132,14 @@ class Fyers:
     # connect to fyers api
     def connect(self):
 
-        # create app instance
-        self.fyers = fyersModel.FyersModel(client_id = self.client_id, is_async=False, token=self.access_token, log_path="./logs")
+        # create log directory
+        if path.isdir("./logs"):
+            # create app instance
+            self.fyers = fyersModel.FyersModel(client_id = self.client_id, is_async=False, token=self.access_token, log_path="./logs")
+        else:
+            os.mkdir("./logs")
+ 
 
-    
     # test fire a request to check if access token is working
     def test_fire(self) -> bool:
         self.connect()
