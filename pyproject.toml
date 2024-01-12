@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "fryers"
-version = "0.0.1"
+version = "1.0.0"
 authors = [{name="shoaib wani", email="wanishoaib@protonmail.com"}]
 description = "A wrapper around fyers_apiv3 to make it easier to use"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 keywords = ['fyers', 'fyers-api', 'trading', 'fyers_apiv3']
 license = {text="MIT"}
 
@@ -16,7 +16,6 @@ classifiers = [
     "Intended Audience :: Financial and Insurance Industry",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Topic :: Utilities"
 ]

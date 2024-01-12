@@ -134,7 +134,7 @@ class Fyers:
     def connect(self):
 
         # create app instance
-        self.fyers = fyersModel.FyersModel(client_id = self.client_id, is_async=False, token=self.access_token, log_path="")
+        self.fyers = fyersModel.FyersModel(client_id = self.client_id, is_async=False, token=self.access_token, log_path="./logs")
 
     
     # test fire a request to check if access token is working
@@ -146,7 +146,7 @@ class Fyers:
             "resolution":"15",
             "date_format":"1",
             "range_from":"2023-07-01",
-            "range_to":"2023-08-28",
+            "range_to":"2023-07-05",
             "cont_flag":"1"
         })
 
